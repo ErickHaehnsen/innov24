@@ -8,7 +8,7 @@ from flask import Flask, redirect, url_for, render_template
 from flask import request
 import json
 
-from pipelinr.lib import pipelinr
+from lib import pipelinr
 
 TARGET_FOLDER = 'recipes'
 
@@ -74,18 +74,21 @@ def serve(pipeline):
     def page_not_found(e):
         return render_template('404.html'), 404
 
-    app.run(host='0.0.0.0')
+    #app.run(host='0.0.0.0')
+    return app
 
 
-def run():
+def app(a, b):
     pipeline = pipelinr.Pipeline({
         'sort_order' : ['step'],
         'sort_reverse' : False
     })
     pipeline.load(TARGET_FOLDER)
-    serve(pipeline)
+    app = serve(pipeline)
+    return app(a, b)
 
 if __name__ == '__main__':
-    run() 
+    #app(host='0.0.0.0',None) 
+    pass
 
 
