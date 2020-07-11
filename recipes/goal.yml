@@ -1,5 +1,9 @@
+- test 1
 
 - is:
-    - this
+    - this:
+        - is:
+            - my:
 - my
-- goal
+- goal:
+    - test
